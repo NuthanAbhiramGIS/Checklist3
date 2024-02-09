@@ -21,6 +21,7 @@ Operating system: Windows 10 (Intel I7)
 Issue scope: This impacts all the students who are trying to complete tutorials and add a basemap of their choice. 
 
 Screenshot of Results and console:
+![Annotation 2024-02-09 130404](https://github.com/NuthanAbhiramGIS/Checklist4/assets/146375982/68da2e30-6079-47c5-b191-962b7880ce31)
 
 
 
