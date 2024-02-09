@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ArcGIS Developer Guide: Display graphics</title>
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+<script src="https://js.arcgis.com/4.28"></script>
+
+<script>
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
+  ],(esriConfig, Map, MapView, Graphic, GraphicsLayer)=> {
+
+    esriConfig.apiKey = "AAPKc57940991cc74ef7884a37499be7ef49yXsTzdyWSbhaNVbE4gWiQkU99yR_m8i-oouO1V4fh3QJEiMU686Jaqc0o2xNttV0";
+    const map = new Map({
+      basemap: "arcgis-imagery"
+    });
+
+    const view = new MapView({
+      container: "viewDiv",
+      map: map,
+      center: [-76.89859634466154, 45.01908985948952], 
+      zoom: 16,
+      constraints: {
+        snapToZoom: false
+      }
+    });
+
+    const graphicsLayer = new GraphicsLayer();
+    map.add(graphicsLayer);
+
+    const polygon = {                   
+      type: "polygon",
+      rings: [
+      [-76.89864204934993, 45.01828661923126],
+      [-76.89906315611498, 45.01903174346001],
+      [-76.89939575000601, 45.01957399061514],
+      [-76.89924554631328, 45.0201276082867],
+      [-76.89876811312243, 45.02030203467252],
+      [-76.89829604437384, 45.02011623264422],
+      [-76.89797954373557, 45.01961190981376],
+      [-76.89712660117242, 45.019623285566055],
+      [-76.8964667778079, 45.01946781676095],
+      [-76.89636485387356, 45.0192706362058],
+      [-76.89664380358863, 45.01881560156382],
+      [-76.89717488093079, 45.01851982710731]
+      ]
+    };
+
+    const simpleFillSymbol = {
+      type: "simple-fill",
+      color: [255,0,0,.4],
+      outline: {
+        color: [255, 255, 255],
+        width: 1
+      }
+    };
+
+    const polygonGraphic = new Graphic({
+      geometry: polygon,
+      symbol: simpleFillSymbol
+    });
+
+    graphicsLayer.add(polygonGraphic);
+
+  });
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
