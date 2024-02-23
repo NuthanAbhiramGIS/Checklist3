@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS Maps SDK for JavaScript Tutorials: Change the basemap style</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      position: relative; /* Make the parent container position relative */
+    }
+
+    #textbox {
+      color: white;
+      font-style: bold;
+      font-size: 40px;
+      position: absolute; 
+      top: 5px; 
+      right: 25px; 
+      border-radius: 5px; 
+      z-index: 1000; 
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+
+  <script type="module" src="https://js.arcgis.com/calcite-components/1.9.2/calcite.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.9.2/calcite.css" />
+
+
+  <script>
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/MapImageLayer"
+    ], function (esriConfig, Map, MapView, MapImageLayer) {
+
+      esriConfig.apiKey = "AAPK7ea8e38f6b4b4f969ab170c41c01634akao_m4e5gL3AyABug_bvD9dN7kbXw7BSISXg4Y558XYUVj59ej6DtByYM0Cms4Tz";
+
+      const map = new Map({
+        basemap: "arcgis/dark-gray"
+      });
+
+      const view = new MapView({
+        map: map,
+        center: [-90, 68], // Longitude, latitude
+        zoom: 2, // Zoom level
+        container: "viewDiv" // Div element
+      });
+
+      // Add Luna layer to the map
+      const lunaLayer = new MapImageLayer({
+        url: "https://luna.flemingcollege.ca:6443/arcgis/rest/services/geom99pm/NChenellCanadaDemo/MapServer",
+        opacity: 1
+      });
+      map.add(lunaLayer);
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv">
+    <div id="textbox">
+      <p>Provinces In Canada</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
